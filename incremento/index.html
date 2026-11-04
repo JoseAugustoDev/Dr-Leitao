@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entradas e saídas | Dr. Leitão</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <p class="marca">Dr. Leitão</p>
+      <h1>Entradas e saídas</h1>
+      <p>Cadastre suas receitas e despesas para acompanhar seu saldo.</p>
+      <p class="saldo">Saldo atual <strong id="saldo-atual" aria-live="polite">R$ 0,00</strong></p>
+      <p class="ajuda">O saldo considera todas as receitas e apenas as despesas pagas.</p>
+      <p id="erro-dados" class="erro" role="status" hidden></p>
+    </header>
+
+    <div class="colunas">
+      <section class="bloco" aria-labelledby="titulo-cadastro">
+        <h2 id="titulo-cadastro">Cadastro</h2>
+        <form id="formulario-lancamento">
+          <label for="tipo">Tipo</label>
+          <select id="tipo" name="tipo">
+            <option value="despesa">Despesa (saída)</option>
+            <option value="receita">Receita (entrada)</option>
+          </select>
+
+          <label for="descricao">Descrição</label>
+          <input id="descricao" name="descricao" maxlength="80" placeholder="Ex.: mercado ou salário" required>
+          <label for="valor">Valor em reais</label>
+          <input id="valor" name="valor" inputmode="decimal" placeholder="Ex.: 45,90" required>
+          <label for="data">Data</label>
+          <input id="data" name="data" type="date" required>
+          <label id="label-categoria" for="categoria">Categoria</label>
+          <input id="categoria" name="categoria" maxlength="40" placeholder="Ex.: alimentação" required>
+
+          <div id="grupo-situacao">
+            <label for="situacao">Situação da despesa</label>
+            <select id="situacao" name="situacao">
+              <option value="pendente">Pendente</option>
+              <option value="paga">Paga</option>
+            </select>
+          </div>
+
+          <button type="submit">Cadastrar lançamento</button>
+          <p id="mensagem" class="mensagem" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="bloco registros" aria-labelledby="titulo-lancamentos">
+        <h2 id="titulo-lancamentos">Lançamentos</h2>
+        <div class="grupo-lista">
+          <div class="cabecalho-lista">
+            <h3>Entrada</h3>
+            <p>Total <strong id="total-entradas">R$ 0,00</strong></p>
+          </div>
+          <p id="entrada-vazia" class="ajuda">Nenhuma entrada cadastrada.</p>
+          <ul id="lista-entradas"></ul>
+        </div>
+        <div class="grupo-lista">
+          <div class="cabecalho-lista">
+            <h3>Saída</h3>
+            <p>Total pago <strong id="total-saidas">R$ 0,00</strong></p>
+          </div>
+          <p id="saida-vazia" class="ajuda">Nenhuma saída cadastrada.</p>
+          <ul id="lista-saidas"></ul>
+        </div>
+        <button id="limpar-sessao" class="botao-limpar" type="button">Limpar sessão</button>
+        <p id="mensagem-limpeza" class="mensagem" role="status" aria-live="polite"></p>
+      </section>
+    </div>
+  </main>
+  <script src="regras.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
